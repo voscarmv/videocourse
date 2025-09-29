@@ -65,17 +65,17 @@ const ItemList: React.FC = () => {
         ))}
       </ul>
       <ul>
-        {items?.sections.map((item) => { 
-          if(item.id === activeSection)
-          return (
-          <li key={item.id}>
-            <ul>
-              <li>{item.name}</li>
-              <li>{item.vidurl}</li>
-              <li><ReactMarkdown>{item.markdown}</ReactMarkdown></li>
-            </ul>
-          </li>
-        )
+        {items?.sections.map((item) => {
+          if (item.id === activeSection)
+            return (
+              <li key={item.id}>
+                <ul>
+                  <li>{item.name}</li>
+                  <li>{item.vidurl}</li>
+                  <li><ReactMarkdown>{item.markdown}</ReactMarkdown></li>
+                </ul>
+              </li>
+            )
         })}
       </ul>
     </div>

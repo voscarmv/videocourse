@@ -10,11 +10,12 @@ interface inputParams {
 // Async thunk for fetching items
 export const fetchItems = createAsyncThunk<Item, inputParams>(
   'items/fetchItems',
-  async ({url, key}) => {
+  async ({ url, key }) => {
     const response = await axios.get<Item>(url, {
       headers: {
-      'Authorization': `Bearer ${key}`
-    }});
+        'Authorization': `Bearer ${key}`
+      }
+    });
     console.log(response.data);
     return response.data;
   }
