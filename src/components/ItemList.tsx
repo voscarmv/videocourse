@@ -26,58 +26,102 @@ const ItemList: React.FC = () => {
       key: keyInput.trim()
     }));
   };
-  if (loading) return <div> Loading... </div>;
+  if (loading) return (
+    <div className="loading-container">
+      <div className="loading-content">
+        <div className="loading-spinner"></div>
+        <p className="loading-text">Loading course content...</p>
+      </div>
+    </div>
+  );
   if (error) {
     if (error === 'Request failed with status code 401') {
       return (
-        <div>
-          <h1>Enter your access code</h1>
-          <form onSubmit={handleKeySubmit}>
-            <label>
-              Access Code:
-              <input
-                type="text"
-                value={keyInput}
-                onChange={(e) => setKeyInput(e.target.value)}
-                placeholder="Enter access key"
-              />
-            </label>
-            <button type="submit">Submit</button>
-          </form>
+        <div className="access-form-container">
+          <div className="access-form-card">
+            <h1 className="access-form-title">Access Required</h1>
+            <p className="access-form-subtitle">Please enter your access code to continue</p>
+            <form className="access-form" onSubmit={handleKeySubmit}>
+              <div className="form-group">
+                <label className="form-label">
+                  Access Code
+                </label>
+                <input
+                  className="form-input"
+                  type="text"
+                  value={keyInput}
+                  onChange={(e) => setKeyInput(e.target.value)}
+                  placeholder="Enter your access key"
+                />
+              </div>
+              <button className="form-submit" type="submit">Access Course</button>
+            </form>
+          </div>
         </div>
       )
     }
-    return <div>Error: {error}</div>
+    return (
+      <div className="error-container">
+        <div className="error-content">
+          <h1 className="error-title">Error</h1>
+          <p className="error-message">{error}</p>
+        </div>
+      </div>
+    )
   };
 
   return (
-    <div>
-      <ul>
-        <li>{items?.content[0].name}</li>
-        <li><ReactMarkdown>{items?.content[0].description}</ReactMarkdown></li>
-      </ul>
-      <h1>Navbar</h1>
-      <ul>
-        {items?.sections.map((item) => (
-          <li key={item.id}>
-            <button onClick={() => setActiveSection(item.id)}>{item.name}</button>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {items?.sections.map((item) => {
-          if (item.id === activeSection)
-            return (
-              <li key={item.id}>
-                <ul>
-                  <li>{item.name}</li>
-                  <li>{item.vidurl}</li>
-                  <li><ReactMarkdown>{item.markdown}</ReactMarkdown></li>
-                </ul>
+    <div className="course-container">
+      <header className="course-header">
+        <h1 className="course-title">{items?.content[0].name}</h1>
+        <div className="course-description">
+          <ReactMarkdown>{items?.content[0].description}</ReactMarkdown>
+        </div>
+      </header>
+      
+      <div className="course-main">
+        <nav className="course-sidebar">
+          <div className="sidebar-header">
+            <h2 className="sidebar-title">Course Content</h2>
+            <p className="sidebar-subtitle">{items?.sections.length} sections</p>
+          </div>
+          <ul className="nav-list">
+            {items?.sections.map((item) => (
+              <li key={item.id} className="nav-item">
+                <button 
+                  className={`nav-button ${item.id === activeSection ? 'active' : ''}`}
+                  onClick={() => setActiveSection(item.id)}
+                >
+                  {item.name}
+                </button>
               </li>
-            )
-        })}
-      </ul>
+            ))}
+          </ul>
+        </nav>
+        
+        <main className="course-content">
+          {items?.sections.map((item) => {
+            if (item.id === activeSection)
+              return (
+                <div key={item.id} className="section-container">
+                  <div className="section-header">
+                    <h2 className="section-title">{item.name}</h2>
+                    <div className="video-container">
+                      <a href={item.vidurl} className="video-url" target="_blank" rel="noopener noreferrer">
+                        Watch Video
+                      </a>
+                    </div>
+                  </div>
+                  <div className="section-content">
+                    <div className="section-markdown">
+                      <ReactMarkdown>{item.markdown}</ReactMarkdown>
+                    </div>
+                  </div>
+                </div>
+              )
+          })}
+        </main>
+      </div>
     </div>
   );
 };
