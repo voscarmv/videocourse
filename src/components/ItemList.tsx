@@ -3,21 +3,28 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../store';
 import { fetchItems } from '../store/itemsSlice';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const ItemList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { items, loading, error, accessKey } = useSelector((state: RootState) => state.items);
+  const { items, loading, error } = useSelector((state: RootState) => state.items);
   const { category } = useParams<{ category: string }>();
-  console.log(category);
+  const [keyInput, setKeyInput] = useState('');
+  const [activeSection, setActiveSection] = useState('');
+
   useEffect(() => {
     // Replace with your actual API URL
-    dispatch(fetchItems({ url: `https://videocourse-api.vercel.app/content/${category}`, key: accessKey }));
+    dispatch(fetchItems({
+      url: `https://videocourse-api.vercel.app/content/${category}`,
+      key: keyInput.trim() // 21596
+    }));
   }, [dispatch]);
-  const [keyInput, setKeyInput] = useState('');
   const handleKeySubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const url = `https://videocourse-api.vercel.app/content/${category}`;
-    dispatch(fetchItems({ url, key: keyInput.trim() }));
+    dispatch(fetchItems({
+      url: `https://videocourse-api.vercel.app/content/${category}`,
+      key: keyInput.trim()
+    }));
   };
   if (loading) return <div> Loading... </div>;
   if (error) {
@@ -45,13 +52,31 @@ const ItemList: React.FC = () => {
 
   return (
     <div>
-      <h1>Items</h1>
       <ul>
-        {items.map((item) => (
+        <li>{items?.content[0].name}</li>
+        <li><ReactMarkdown>{items?.content[0].description}</ReactMarkdown></li>
+      </ul>
+      <h1>Navbar</h1>
+      <ul>
+        {items?.sections.map((item) => (
           <li key={item.id}>
-            {item.id}: {item.name}
+            <button onClick={() => setActiveSection(item.id)}>{item.name}</button>
           </li>
         ))}
+      </ul>
+      <ul>
+        {items?.sections.map((item) => { 
+          if(item.id === activeSection)
+          return (
+          <li key={item.id}>
+            <ul>
+              <li>{item.name}</li>
+              <li>{item.vidurl}</li>
+              <li><ReactMarkdown>{item.markdown}</ReactMarkdown></li>
+            </ul>
+          </li>
+        )
+        })}
       </ul>
     </div>
   );

@@ -15,12 +15,13 @@ export const fetchItems = createAsyncThunk<Item, inputParams>(
       headers: {
       'Authorization': `Bearer ${key}`
     }});
+    console.log(response.data);
     return response.data;
   }
 );
 
 const initialState: ItemsState = {
-  items: [],
+  items: null,
   loading: false,
   error: null,
 };
@@ -37,7 +38,7 @@ const itemsSlice = createSlice({
       })
       .addCase(fetchItems.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload.sections;
+        state.items = action.payload;
       })
       .addCase(fetchItems.rejected, (state, action) => {
         state.loading = false;

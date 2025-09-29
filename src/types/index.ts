@@ -8,18 +8,20 @@ interface Section {
   vidurl: string,
 };
 
+interface Content {
+  id: string,
+  name: string,
+  description: string,
+}
+
 export interface Item {
   message: string;
-  content: {
-    id: string,
-    name: string,
-    created_at: string,
-  }[],
+  content: Content[],
   sections: Section[];
 }
 
 export interface ItemsState {
-  items: Section[];
+  items: Item | null;
   loading: boolean;
   error: string | null;
 }
