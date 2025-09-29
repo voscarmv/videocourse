@@ -30,7 +30,7 @@ const ItemList: React.FC = () => {
     <div className="loading-container">
       <div className="loading-content">
         <div className="loading-spinner"></div>
-        <p className="loading-text">Loading course content...</p>
+        <p className="loading-text">Cargando contenido del curso...</p>
       </div>
     </div>
   );
@@ -39,22 +39,22 @@ const ItemList: React.FC = () => {
       return (
         <div className="access-form-container">
           <div className="access-form-card">
-            <h1 className="access-form-title">Access Required</h1>
-            <p className="access-form-subtitle">Please enter your access code to continue</p>
+            <h1 className="access-form-title">Acceso Requerido</h1>
+            <p className="access-form-subtitle">Por favor ingresa tu código de acceso para continuar</p>
             <form className="access-form" onSubmit={handleKeySubmit}>
               <div className="form-group">
                 <label className="form-label">
-                  Access Code
+                  Código de Acceso
                 </label>
                 <input
                   className="form-input"
                   type="text"
                   value={keyInput}
                   onChange={(e) => setKeyInput(e.target.value)}
-                  placeholder="Enter your access key"
+                  placeholder="Ingresa tu código de acceso"
                 />
               </div>
-              <button className="form-submit" type="submit">Access Course</button>
+              <button className="form-submit" type="submit">Acceder al Curso</button>
             </form>
           </div>
         </div>
@@ -82,8 +82,8 @@ const ItemList: React.FC = () => {
       <div className="course-main">
         <nav className="course-sidebar">
           <div className="sidebar-header">
-            <h2 className="sidebar-title">Course Content</h2>
-            <p className="sidebar-subtitle">{items?.sections.length} sections</p>
+            <h2 className="sidebar-title">Contenido del Curso</h2>
+            <p className="sidebar-subtitle">{items?.sections.length} secciones</p>
           </div>
           <ul className="nav-list">
             {items?.sections.map((item) => (
@@ -108,7 +108,7 @@ const ItemList: React.FC = () => {
                     <h2 className="section-title">{item.name}</h2>
                     <div className="video-container">
                       <a href={item.vidurl} className="video-url" target="_blank" rel="noopener noreferrer">
-                        Watch Video
+                        Ver Video
                       </a>
                     </div>
                   </div>
