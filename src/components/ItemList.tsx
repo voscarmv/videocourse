@@ -100,8 +100,8 @@ const ItemList: React.FC = () => {
         </nav>
         
         <main className="course-content">
-          {items?.sections.map((item) => {
-            if (item.id === activeSection)
+          {items?.sections.map((item, index) => {
+            if (item.id === activeSection || (activeSection === '' && index === 0))
               return (
                 <div key={item.id} className="section-container">
                   <div className="section-header">
