@@ -5,10 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    host: '0.0.0.0',   // allow all network interfaces
-    port: 5173,
-    strictPort: true,   // optional: fail if port is in use
-    cors: true,          // optional: allow cross-origin
+//    host: '0.0.0.0',   // allow all network interfaces
+//    port: 5173,
+//    strictPort: true,   // optional: fail if port is in use
+//    cors: true,          // optional: allow cross-origin
     allowedHosts: [
       'cursia.lat',
       'www.cursia.lat',
