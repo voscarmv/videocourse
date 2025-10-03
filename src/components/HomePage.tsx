@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
     <div className="homepage-container">
       <header className="homepage-header">
         <div className="homepage-hero">
-          <h1 className="homepage-title">VideoCourse</h1>
+          <h1 className="homepage-title">Cursia</h1>
           <p className="homepage-subtitle">
             Plataforma de cursos en video para potenciar tu aprendizaje
           </p>
@@ -96,7 +96,7 @@ const HomePage: React.FC = () => {
       <footer className="homepage-footer">
         <div className="footer-content">
           <p className="footer-text">
-            © 2025 VideoCourse. Transformando el aprendizaje a través de la tecnología.
+            © 2025 Cursia. Transformando el aprendizaje a través de la tecnología.
           </p>
         </div>
       </footer>
