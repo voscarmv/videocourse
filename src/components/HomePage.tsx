@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../store';
 import { fetchHomeElements } from '../store/homeSlice';
 import { useNavigate } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -76,7 +77,7 @@ const HomePage: React.FC = () => {
                   <h3 className="course-card-title">{element.name}</h3>
                 </div>
                 <div className="course-card-content">
-                  <p className="course-card-description">{element.description}</p>
+                  <p className="course-card-description"><ReactMarkdown>{element.description}</ReactMarkdown></p>
                 </div>
                 <div className="course-card-footer">
                   <button 
