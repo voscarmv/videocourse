@@ -9,7 +9,7 @@ const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { elements, loading, error } = useSelector((state: RootState) => state.home);
   const navigate = useNavigate();
-  const apiurl = import.meta.env.VITE_api_url;
+  const apiurl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     dispatch(fetchHomeElements(({

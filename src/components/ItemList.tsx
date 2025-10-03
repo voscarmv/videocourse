@@ -11,7 +11,7 @@ const ItemList: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [keyInput, setKeyInput] = useState('');
   const [activeSection, setActiveSection] = useState('');
-  const apiurl = import.meta.env.VITE_api_url;
+  const apiurl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     // Replace with your actual API URL
