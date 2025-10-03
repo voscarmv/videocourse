@@ -11,18 +11,19 @@ const ItemList: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [keyInput, setKeyInput] = useState('');
   const [activeSection, setActiveSection] = useState('');
+  const apiurl = import.meta.env.VITE_api_url;
 
   useEffect(() => {
     // Replace with your actual API URL
     dispatch(fetchItems({
-      url: `https://videocourse-api.vercel.app/content/${category}`,
+      url: `${apiurl}/content/${category}`,
       key: keyInput.trim() // 21596
     }));
   }, [dispatch]);
   const handleKeySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(fetchItems({
-      url: `https://videocourse-api.vercel.app/content/${category}`,
+      url: `${apiurl}/content/${category}`,
       key: keyInput.trim()
     }));
   };

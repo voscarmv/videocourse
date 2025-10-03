@@ -9,10 +9,11 @@ const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { elements, loading, error } = useSelector((state: RootState) => state.home);
   const navigate = useNavigate();
+  const apiurl = import.meta.env.VITE_api_url;
 
   useEffect(() => {
     dispatch(fetchHomeElements(({
-      url: `https://videocourse-api.vercel.app/content`,
+      url: `${apiurl}/content`,
       key: null
     })));
   }, [dispatch]);
