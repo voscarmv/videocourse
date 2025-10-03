@@ -25,3 +25,19 @@ export interface ItemsState {
   loading: boolean;
   error: string | null;
 }
+
+export interface HomeElement {
+  message: string,
+  contents: Content[]
+}
+
+export interface HomeState {
+  elements: HomeElement | null,
+  loading: boolean,
+  error: string | null
+}
+
+export interface InputParams {
+  url: string,
+  key: string | null
+}

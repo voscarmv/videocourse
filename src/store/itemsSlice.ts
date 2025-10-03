@@ -1,14 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import type { Item, ItemsState } from '../types';
+import type { InputParams, Item, ItemsState } from '../types';
 
-interface inputParams {
-  url: string,
-  key: string | null
-}
+
 
 // Async thunk for fetching items
-export const fetchItems = createAsyncThunk<Item, inputParams>(
+export const fetchItems = createAsyncThunk<Item, InputParams>(
   'items/fetchItems',
   async ({ url, key }) => {
     const response = await axios.get<Item>(url, {
@@ -16,7 +13,6 @@ export const fetchItems = createAsyncThunk<Item, inputParams>(
         'Authorization': `Bearer ${key}`
       }
     });
-    console.log(response.data);
     return response.data;
   }
 );
