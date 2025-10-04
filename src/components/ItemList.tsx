@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../store';
 import { fetchItems } from '../store/itemsSlice';
 import { useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 const ItemList: React.FC = () => {
@@ -77,7 +77,7 @@ const ItemList: React.FC = () => {
       <header className="course-header">
         <h1 className="course-title">{items?.content[0].name}</h1>
         <div className="course-description">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{items?.content[0].description}</ReactMarkdown>
+          <Markdown remarkPlugins={[remarkGfm]}>{items?.content[0].description}</Markdown>
         </div>
       </header>
       
@@ -116,7 +116,7 @@ const ItemList: React.FC = () => {
                   </div>
                   <div className="section-content">
                     <div className="section-markdown">
-                      <ReactMarkdown>{item.markdown}</ReactMarkdown>
+                      <Markdown remarkPlugins={[remarkGfm]}>{item.markdown}</Markdown>
                     </div>
                   </div>
                 </div>
