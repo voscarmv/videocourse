@@ -4,6 +4,7 @@ import type { RootState, AppDispatch } from '../store';
 import { fetchItems } from '../store/itemsSlice';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const ItemList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -11,7 +12,6 @@ const ItemList: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [keyInput, setKeyInput] = useState('');
   const [activeSection, setActiveSection] = useState('');
-  import remarkGfm from 'remark-gfm';
   const apiurl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
