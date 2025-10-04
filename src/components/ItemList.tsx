@@ -109,8 +109,8 @@ const ItemList: React.FC = () => {
                 <div key={item.id} className="section-container">
                   <div className="section-header">
                     <h2 className="section-title">{item.name}</h2>
-                    <div className="video-container">
-                      <LiteYouTubeEmbed id={item.vidurl} title={item.name} />
+                    <div>
+                      <LiteYouTubeEmbed id={item.vidurl} title={item.name} poster="maxresdefault"/>
                     </div>
                   </div>
                   <div className="section-content">
