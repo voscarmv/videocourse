@@ -11,6 +11,7 @@ const ItemList: React.FC = () => {
   const { category } = useParams<{ category: string }>();
   const [keyInput, setKeyInput] = useState('');
   const [activeSection, setActiveSection] = useState('');
+  import remarkGfm from 'remark-gfm';
   const apiurl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -76,7 +77,7 @@ const ItemList: React.FC = () => {
       <header className="course-header">
         <h1 className="course-title">{items?.content[0].name}</h1>
         <div className="course-description">
-          <ReactMarkdown>{items?.content[0].description}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{items?.content[0].description}</ReactMarkdown>
         </div>
       </header>
       

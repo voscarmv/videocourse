@@ -4,6 +4,7 @@ import type { RootState, AppDispatch } from '../store';
 import { fetchHomeElements } from '../store/homeSlice';
 import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -78,7 +79,7 @@ const HomePage: React.FC = () => {
                   <h3 className="course-card-title">{element.name}</h3>
                 </div>
                 <div className="course-card-content">
-                  <div className="course-card-description"><ReactMarkdown>{element.description}</ReactMarkdown></div>
+                  <div className="course-card-description"><ReactMarkdown remarkPlugins={[remarkGfm]}>{element.description}</ReactMarkdown></div>
                 </div>
                 <div className="course-card-footer">
                   <button 
