@@ -5,6 +5,7 @@ import { fetchItems } from '../store/itemsSlice';
 import { useParams } from 'react-router-dom';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 
 const ItemList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -80,7 +81,7 @@ const ItemList: React.FC = () => {
           <Markdown remarkPlugins={[remarkGfm]}>{items?.content[0].description}</Markdown>
         </div>
       </header>
-      
+
       <div className="course-main">
         <nav className="course-sidebar">
           <div className="sidebar-header">
@@ -90,7 +91,7 @@ const ItemList: React.FC = () => {
           <ul className="nav-list">
             {items?.sections.map((item) => (
               <li key={item.id} className="nav-item">
-                <button 
+                <button
                   className={`nav-button ${item.id === activeSection ? 'active' : ''}`}
                   onClick={() => setActiveSection(item.id)}
                 >
@@ -100,7 +101,7 @@ const ItemList: React.FC = () => {
             ))}
           </ul>
         </nav>
-        
+
         <main className="course-content">
           {items?.sections.map((item, index) => {
             if (item.id === activeSection || (activeSection === '' && index === 0))
@@ -109,9 +110,7 @@ const ItemList: React.FC = () => {
                   <div className="section-header">
                     <h2 className="section-title">{item.name}</h2>
                     <div className="video-container">
-                      <a href={item.vidurl} className="video-url" target="_blank" rel="noopener noreferrer">
-                        Ver Video
-                      </a>
+                      <LiteYouTubeEmbed id={item.vidurl} title={item.name} />
                     </div>
                   </div>
                   <div className="section-content">
