@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 const ItemList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
