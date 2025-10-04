@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
                   <h3 className="course-card-title">{element.name}</h3>
                 </div>
                 <div className="course-card-content">
-                  <p className="course-card-description"><ReactMarkdown>{element.description}</ReactMarkdown></p>
+                  <div className="course-card-description"><ReactMarkdown>{element.description}</ReactMarkdown></div>
                 </div>
                 <div className="course-card-footer">
                   <button 
